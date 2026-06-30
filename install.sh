@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 # Configuration
 INSTALL_DIR="${HOME}/.local/bin"
 SCRIPT_NAME="compress"
-REPO_URL="https://github.com/jack/quick-compress"
+REPO_URL="https://github.com/jschof1/quick-compress"
 
 # Print functions
 print_header() {
@@ -60,7 +60,8 @@ detect_os() {
 
 # Install ImageMagick
 install_imagemagick() {
-    local os=$(detect_os)
+    local os
+    os=$(detect_os)
     
     print_info "ImageMagick is required but not installed."
     
@@ -151,9 +152,11 @@ add_to_path() {
         print_success "$INSTALL_DIR is already in PATH"
     else
         print_info "Adding $INSTALL_DIR to PATH in $shell_rc"
-        echo "" >> "$shell_rc"
-        echo "# Added by Quick Compress installer" >> "$shell_rc"
-        echo "export PATH=\"$INSTALL_DIR:\$PATH\"" >> "$shell_rc"
+        {
+            echo ""
+            echo "# Added by Quick Compress installer"
+            echo "export PATH=\"$INSTALL_DIR:\$PATH\""
+        } >> "$shell_rc"
         print_success "Added to PATH"
         print_warning "Please run: source $shell_rc"
     fi
@@ -161,7 +164,8 @@ add_to_path() {
 
 # Install Finder integration (macOS only)
 install_finder_integration() {
-    local os=$(detect_os)
+    local os
+    os=$(detect_os)
     
     if [[ "$os" != "macos" ]]; then
         return 0

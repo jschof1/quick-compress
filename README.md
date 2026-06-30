@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/jack/quick-compress/actions"><img src="https://github.com/jack/quick-compress/workflows/Test%20Quick%20Compress/badge.svg" alt="Tests"></a>
-  <a href="https://github.com/jack/quick-compress/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/jack/quick-compress/releases"><img src="https://img.shields.io/github/v/release/jack/quick-compress" alt="Release"></a>
+  <a href="https://github.com/jschof1/quick-compress/actions"><img src="https://github.com/jschof1/quick-compress/workflows/Test%20Quick%20Compress/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/jschof1/quick-compress/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+  <a href="https://github.com/jschof1/quick-compress/releases"><img src="https://img.shields.io/github/v/release/jschof1/quick-compress" alt="Release"></a>
 </p>
 
 <p align="center">
@@ -30,13 +30,13 @@
 
 ## Features
 
-✨ **WebP Conversion** - Automatically converts images to WebP format for optimal web performance  
-📐 **Smart Resizing** - Limits maximum dimensions to 1920x1080 while maintaining aspect ratio  
-🎯 **Size Optimization** - Keeps files under 500KB with intelligent quality adjustment  
-🖼️ **Quality Preservation** - Maintains visual quality using binary search for optimal compression  
-🚀 **Batch Processing** - Process entire folders with a single command  
-🍎 **macOS Native** - Finder Quick Actions and Droplet app included  
-⚡ **Fast & Simple** - One command, no configuration needed
+- **WebP Conversion** - Automatically converts images to WebP format for optimal web performance
+- **Smart Resizing** - Limits maximum dimensions to 1280x1280 while maintaining aspect ratio
+- **Size Optimization** - Targets files under 200KB with intelligent quality and size adjustment
+- **Quality Preservation** - Uses binary search and progressive resizing for optimal compression
+- **Batch Processing** - Process entire folders with a single command
+- **macOS Native** - Finder Quick Actions and Droplet app included
+- **Fast & Simple** - One command, no configuration needed
 
 ---
 
@@ -45,21 +45,21 @@
 ### Option 1: Homebrew (Recommended)
 
 ```bash
-brew tap jack/quick-compress
+brew tap jschof1/quick-compress
 brew install quick-compress
 ```
 
 ### Option 2: Curl Install Script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jack/quick-compress/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jschof1/quick-compress/main/install.sh | bash
 ```
 
 ### Option 3: Manual Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/jack/quick-compress.git
+git clone https://github.com/jschof1/quick-compress.git
 
 # Run the install script
 cd quick-compress
@@ -131,11 +131,11 @@ All formats are converted to **WebP** for maximum compression and web compatibil
 
 | Setting         | Value  | Description                     |
 | --------------- | ------ | ------------------------------- |
-| Max Width       | 1920px | Maximum image width             |
-| Max Height      | 1080px | Maximum image height            |
-| Max File Size   | 500KB  | Target file size limit          |
-| Initial Quality | 85%    | Starting WebP quality           |
-| Min Quality     | 60%    | Lowest quality before giving up |
+| Max Width       | 1280px | Maximum image width             |
+| Max Height      | 1280px | Maximum image height            |
+| Max File Size   | 200KB  | Target file size limit          |
+| Initial Quality | 80%    | Starting WebP quality           |
+| Min Quality     | 25%    | Lowest quality before resizing  |
 
 ### Custom Configuration
 
@@ -150,7 +150,7 @@ Modify these variables at the top:
 
 ```bash
 MAX_WIDTH=2560      # Change max width
-MAX_HEIGHT=1440     # Change max height
+MAX_HEIGHT=2560     # Change max height
 MAX_SIZE=1048576    # Change to 1MB (in bytes)
 QUALITY=90          # Change initial quality
 ```
@@ -161,9 +161,10 @@ QUALITY=90          # Change initial quality
 
 1. **Analyze** - Checks image dimensions and current file size
 2. **Resize** - Scales down images exceeding max dimensions
-3. **Convert** - Converts to WebP at 85% quality
-4. **Optimize** - If file > 500KB, uses binary search to find best quality under limit
-5. **Save** - Outputs optimized WebP in the same location
+3. **Convert** - Converts to WebP at 80% quality
+4. **Optimize** - If file > 200KB, uses binary search to find the best quality under the limit
+5. **Resize Further** - If quality alone is not enough, progressively reduces dimensions
+6. **Save** - Outputs optimized WebP in the same location
 
 ---
 
@@ -174,8 +175,8 @@ QUALITY=90          # Change initial quality
 | Original    | Compressed  | Savings |
 | ----------- | ----------- | ------- |
 | 2.5 MB PNG  | 235 KB WebP | 90.6%   |
-| 4.1 MB JPG  | 487 KB WebP | 88.1%   |
-| 8.7 MB TIFF | 512 KB WebP | 94.1%   |
+| 4.1 MB JPG  | 198 KB WebP | 95.2%   |
+| 8.7 MB TIFF | 200 KB WebP | 97.7%   |
 
 ### Real-World Usage
 

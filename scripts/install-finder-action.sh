@@ -4,8 +4,6 @@
 # This script creates the Quick Action automatically
 
 WORKFLOW_DIR="$HOME/Library/Services/Compress Images.workflow"
-APP_NAME="Compress Images"
-
 # Create the workflow directory structure
 mkdir -p "$WORKFLOW_DIR/Contents"
 

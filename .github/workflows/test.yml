@@ -38,4 +38,4 @@ jobs:
         run: sudo apt-get install -y shellcheck
 
       - name: Run ShellCheck
-        run: shellcheck compress install.sh test.sh
+        run: shellcheck compress compress-images.sh install.sh test.sh
